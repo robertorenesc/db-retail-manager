@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.gft.retail.manager.model.Shop;
+import com.gft.retail.manager.request.SaveShopRequest;
 import com.gft.retail.manager.service.ShopService;
 
 @Controller
@@ -19,7 +19,7 @@ public class ShopController {
 	private ShopService shopService;
 	
 	@RequestMapping(method=RequestMethod.POST, value="/api/shops")
-	public ResponseEntity<Object> storeShop(@RequestBody Shop shop) {
+	public ResponseEntity<Object> storeShop(@RequestBody SaveShopRequest shop) {
 		
 		return null;
 	}
