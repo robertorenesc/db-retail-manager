@@ -13,6 +13,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+/**
+ * Object that represents an ADDRESS object of datanase
+ * 
+ * @author Roberto Salazar - GFT
+ */
 @Entity
 @Table(name="ADDRESS")
 public class Address {

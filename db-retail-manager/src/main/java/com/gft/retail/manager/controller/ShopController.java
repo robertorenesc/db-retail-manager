@@ -14,12 +14,23 @@ import com.gft.retail.manager.model.Shop;
 import com.gft.retail.manager.request.SaveShopRequest;
 import com.gft.retail.manager.service.ShopService;
 
+/**
+ * Class that expose all the REST endpoints to be used
+ * 
+ * @author Roberto Salazar - GFT
+ */
 @Controller
 public class ShopController {
 
 	@Autowired
 	private ShopService shopService;
 	
+	/**
+	 * Recevie the request and change it to store a n Shop and its Address
+	 * 
+	 * @param request SaveShopRequest object in Json format
+	 * @return The info of the stored object
+	 */
 	@RequestMapping(method=RequestMethod.POST, value="/api/shops")
 	public ResponseEntity<Object> storeShop(@RequestBody SaveShopRequest request) {
 		try {
@@ -35,11 +46,23 @@ public class ShopController {
 		
 	}
 	
+	/**
+	 * Returns the nearby object based in the coordinates sent
+	 * 
+	 * @param latitude X point in the map of the sender
+	 * @param longitude Y point in the map of the sender
+	 * @return Shop object in Json format nearby to the sender
+	 */
 	@RequestMapping(method=RequestMethod.GET, value="/api/shops")
 	public ResponseEntity<Object> getNearbyShops(final @RequestParam(value="latitude", required = true)double latitude, final @RequestParam(value="longitude", required = true)double longitude) {
 		return new ResponseEntity<>(shopService.getNearbyShops(latitude, longitude), HttpStatus.OK);
 	}
 	
+	/**
+	 * Return all the persisted Shops with the active Address
+	 * 
+	 * @return Listo of Shops
+	 */
 	@RequestMapping(method=RequestMethod.GET, value="/api/shops/all")
 	public ResponseEntity<Object> getAllShops() {
 		return new ResponseEntity<>(shopService.getAllShops(), HttpStatus.OK);

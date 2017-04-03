@@ -15,6 +15,11 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
+/**
+ * Datasource implementation to connect to H2 in memory Database
+ * 
+ * @author Roberto Salazar - GFT
+ */
 @Configuration
 @Profile(value="h2")
 public class H2DataSourceConfig implements DataSourceConfig {

@@ -1,0 +1,53 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Retail Manager",
+		"_postman_id": "989e0ba2-c54f-b131-1c9d-c22bc4b42b54",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/shops/all",
+			"request": {
+				"url": "http://localhost:8080/api/shops/all",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get all shops"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/shops?latitude=X&longitude=Y",
+			"request": {
+				"url": "http://localhost:8080/api/shops?latitude=51.497277&longitude=-0.179377",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Find nearby shop"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/shops",
+			"request": {
+				"url": "http://localhost:8080/api/shops",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"shopName\": \"Columbia Road Shop\",\n\t\"shopAddressNumber\": \"Columbia Rd\",\n\t\"shopAddressPostCode\": \"E2 7RG\"\n}"
+				},
+				"description": "Save Shop"
+			},
+			"response": []
+		}
+	]
+}

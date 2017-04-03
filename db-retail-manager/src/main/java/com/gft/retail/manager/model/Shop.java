@@ -15,6 +15,11 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+/**
+ * Object that represents a SHOP object of datanase
+ * 
+ * @author Roberto Salazar - GFT
+ */
 @Entity
 @Table(name="SHOP")
 public class Shop {
@@ -30,6 +35,9 @@ public class Shop {
 	@OneToMany(mappedBy="shop", fetch=FetchType.LAZY)
 	@JsonManagedReference
 	private List<Address> address;
+	
+	@Transient
+	private Address previousAddress;
 	
 	@Transient
 	long distance;
@@ -64,6 +72,14 @@ public class Shop {
 
 	public void setDistance(long distance) {
 		this.distance = distance;
+	}
+
+	public Address getPreviousAddress() {
+		return previousAddress;
+	}
+
+	public void setPreviousAddress(Address previousAddress) {
+		this.previousAddress = previousAddress;
 	}
 	
 }

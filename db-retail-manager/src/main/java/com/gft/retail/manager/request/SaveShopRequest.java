@@ -1,5 +1,10 @@
 package com.gft.retail.manager.request;
 
+/**
+ * Class that represent the POJO structure of the save shop REST request
+ * 
+ * @author Roberto Salazar - GFT
+ */
 public class SaveShopRequest {
 	
 	private String shopName;
