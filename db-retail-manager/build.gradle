@@ -32,6 +32,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("com.h2database:h2")
     compile("org.flywaydb:flyway-core")
+    compile("com.google.maps:google-maps-services:0.1.18")
     
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")

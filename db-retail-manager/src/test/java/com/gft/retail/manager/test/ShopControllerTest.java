@@ -27,7 +27,7 @@ public class ShopControllerTest {
 	public void getAllShopsTest() {
 		@SuppressWarnings("rawtypes")
 		List body = this.restTemplate.getForObject("/api/shops/all", List.class);
-		Assertions.assertThat(body.size()).isEqualTo(3);
+		Assertions.assertThat(body.size()).isEqualTo(4);
 	}
 	
 	@Test 
@@ -36,21 +36,20 @@ public class ShopControllerTest {
 		request.setShopName("Columbia Road Shop");
 		request.setShopAddressNumber("Columbia Rd");
 		request.setShopAddressPostCode("E2 7RG");
-		Shop body = this.restTemplate.postForObject("/api/shops/all", request, Shop.class);
+		Shop body = this.restTemplate.postForObject("/api/shops", request, Shop.class);
 		Assertions.assertThat(body.getAddress().size()).isGreaterThan(0);
 	}
 	
 	@Test
 	public void getNearbyShopsTest() {
-		URI targetURL = UriComponentsBuilder.fromUriString("")
+		URI targetURL = UriComponentsBuilder.fromUriString("/")
 			    .path("api/shops")
 			    .queryParam("latitude", "51.497277")
 			    .queryParam("longitude", "-0.179377")
 			    .build()
 			    .toUri();
-		@SuppressWarnings("unchecked")
-		List<Shop> body = this.restTemplate.getForObject(targetURL ,List.class);
-		Assertions.assertThat(body.get(0).getName()).isEqualTo("Hyde Park Shop");
+		Shop body = this.restTemplate.getForObject(targetURL ,Shop.class);
+		Assertions.assertThat(body.getName()).isEqualTo("Hyde Park Shop");
 	}
 	
 }

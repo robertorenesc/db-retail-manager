@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gft.retail.manager.model.Address;
+import com.gft.retail.manager.model.Shop;
 import com.gft.retail.manager.request.SaveShopRequest;
 import com.gft.retail.manager.service.ShopService;
 
@@ -19,15 +21,23 @@ public class ShopController {
 	private ShopService shopService;
 	
 	@RequestMapping(method=RequestMethod.POST, value="/api/shops")
-	public ResponseEntity<Object> storeShop(@RequestBody SaveShopRequest shop) {
+	public ResponseEntity<Object> storeShop(@RequestBody SaveShopRequest request) {
+		try {
+			Shop shop = new Shop();
+			shop.setName(request.getShopName());
+			Address address = new Address();
+			address.setNumber(request.getShopAddressNumber());
+			address.setPostCode(request.getShopAddressPostCode());
+			return new ResponseEntity<>(shopService.saveShop(shop, address), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 		
-		return null;
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/api/shops")
-	public ResponseEntity<Object> getNearbyShops(final @RequestParam(value="latitude", required = true)Long latitude, final @RequestParam(value="longitude", required = true)Long longitude) {
-		
-		return null;
+	public ResponseEntity<Object> getNearbyShops(final @RequestParam(value="latitude", required = true)double latitude, final @RequestParam(value="longitude", required = true)double longitude) {
+		return new ResponseEntity<>(shopService.getNearbyShops(latitude, longitude), HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/api/shops/all")

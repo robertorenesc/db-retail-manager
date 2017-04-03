@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -27,8 +28,12 @@ public class Shop {
 	private String name;
 	
 	@OneToMany(mappedBy="shop", fetch=FetchType.LAZY)
-	private List<Address> address;
 	@JsonManagedReference
+	private List<Address> address;
+	
+	@Transient
+	long distance;
+	
 	public String getName() {
 		return name;
 	}
@@ -51,6 +56,14 @@ public class Shop {
 
 	public void setAddress(List<Address> address) {
 		this.address = address;
+	}
+
+	public long getDistance() {
+		return distance;
+	}
+
+	public void setDistance(long distance) {
+		this.distance = distance;
 	}
 	
 }

@@ -29,10 +29,13 @@ public class Address {
 	private String postCode;
 	
 	@Column(name="LATITUDE")
-	private String latitude;
+	private double latitude;
 	
 	@Column(name="LONGITUDE")
-	private String longitude;
+	private double longitude;
+	
+	@Column(name="ACTIVE")
+	private Boolean active;
 	
 	@ManyToOne
     @JoinColumn(name="SHOP_ID")
@@ -63,19 +66,19 @@ public class Address {
 		this.number = number;
 	}
 
-	public String getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 
@@ -85,6 +88,19 @@ public class Address {
 
 	public void setShop(Shop shop) {
 		this.shop = shop;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	@Override
+	public String toString() {
+		return number + "," + postCode;
 	}
 	
 }
