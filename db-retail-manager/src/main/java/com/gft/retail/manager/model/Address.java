@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -39,8 +40,9 @@ public class Address {
 	@Column(name="LONGITUDE")
 	private double longitude;
 	
-	@Column(name="ACTIVE")
-	private Boolean active;
+	@Version
+	@Column(name="VERSION")
+	private Integer version;
 	
 	@ManyToOne
     @JoinColumn(name="SHOP_ID")
@@ -95,17 +97,18 @@ public class Address {
 		this.shop = shop;
 	}
 
-	public Boolean getActive() {
-		return active;
+	public Integer getVersion() {
+		return version;
 	}
 
-	public void setActive(Boolean active) {
-		this.active = active;
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
-
+	
 	@Override
 	public String toString() {
 		return number + "," + postCode;
 	}
+
 	
 }

@@ -25,13 +25,13 @@ Copyright (c) 2017 GFT Group
         - `gradlew.bat bootRun`
 
 ## Gradle tasks
-#####Run tasks
+##Run tasks
 - `bootRun` - Run the project with support for auto-detecting main class and reloading static resources
 
-#####Clean tasks
+##Clean tasks
 - `clean` - Delete the build directory
 
-#####Clean tasks
+##Clean tasks
 - `test` - Run unit testing of the project
 
 ## How to Use

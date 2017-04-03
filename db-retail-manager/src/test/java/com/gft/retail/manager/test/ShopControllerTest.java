@@ -37,7 +37,7 @@ public class ShopControllerTest {
 		request.setShopAddressNumber("Columbia Rd");
 		request.setShopAddressPostCode("E2 7RG");
 		Shop body = this.restTemplate.postForObject("/api/shops", request, Shop.class);
-		Assertions.assertThat(body.getAddress().size()).isGreaterThan(0);
+		Assertions.assertThat(body.getAddress()).isNotEqualTo(null);
 	}
 	
 	@Test

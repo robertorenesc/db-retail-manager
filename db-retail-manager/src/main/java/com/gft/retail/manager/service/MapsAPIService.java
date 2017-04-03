@@ -58,7 +58,7 @@ public class MapsAPIService {
 	public Shop getNearbyShop(double latitude, double longitude, List<Shop> shopList) {
 		// Calculate distance for each address
 		shopList.stream().forEach(s -> {
-			s.setDistance(calculateDistance(latitude, longitude, s.getAddress().get(0)));
+			s.setDistance(calculateDistance(latitude, longitude, s.getAddress()));
 		});
 		// Get the nearby place
 		Shop nearbyShop = shopList.stream().filter(s -> s.getDistance() >= 0).min((s1, s2) -> Long.compare(s1.getDistance(), s2.getDistance())).get();

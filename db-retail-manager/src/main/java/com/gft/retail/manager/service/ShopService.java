@@ -43,13 +43,15 @@ public class ShopService {
 		if(existingShop == null) {
 			existingShop = shopRepository.save(shop);
 		}
-		existingShop.setPreviousAddress(addressRepository.findLastActive(existingShop));
+		Address existingAddress = addressRepository.findByShop(existingShop);
+		if(existingAddress != null) {
+			address = existingAddress;
+		}
 		address.setShop(existingShop);
 		mapsService.setCoordinates(address);
-		address.setActive(true);
-		addressRepository.inactivateActualAddress(existingShop.getId());
+		address.setShop(existingShop);
 		addressRepository.save(address);
-		existingShop.setAddress(addressRepository.findActiveAddressByShop(existingShop));
+		existingShop.setAddress(addressRepository.findByShop(existingShop));
 		return existingShop;
 	}
 	

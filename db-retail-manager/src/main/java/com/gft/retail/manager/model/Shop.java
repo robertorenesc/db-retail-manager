@@ -9,7 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -32,12 +32,9 @@ public class Shop {
 	@Column(name="NAME")
 	private String name;
 	
-	@OneToMany(mappedBy="shop", fetch=FetchType.LAZY)
+	@OneToOne(mappedBy="shop", fetch=FetchType.LAZY)
 	@JsonManagedReference
-	private List<Address> address;
-	
-	@Transient
-	private Address previousAddress;
+	private Address address;
 	
 	@Transient
 	long distance;
@@ -58,11 +55,11 @@ public class Shop {
 		this.id = id;
 	}
 
-	public List<Address> getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(List<Address> address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
@@ -72,14 +69,6 @@ public class Shop {
 
 	public void setDistance(long distance) {
 		this.distance = distance;
-	}
-
-	public Address getPreviousAddress() {
-		return previousAddress;
-	}
-
-	public void setPreviousAddress(Address previousAddress) {
-		this.previousAddress = previousAddress;
 	}
 	
 }
